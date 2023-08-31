@@ -5,7 +5,7 @@ import Client from "shopify-buy"
 const client = Client.buildClient(
   {
     domain: process.env.GATSBY_SHOPIFY_STORE_URL,
-    storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN,
+    storefrontAccessToken: process.env.GATSBY_STOREFRONT_TOKEN,
   },
   fetch
 )
@@ -59,7 +59,8 @@ export const StoreProvider = ({ children }) => {
             return
           }
         } catch (e) {
-          localStorage.setItem(localStorageKey, null)
+          console.error('chyba při načtení objednávky', e);
+          localStorage.setItem(localStorageKey, null);
         }
       }
 
